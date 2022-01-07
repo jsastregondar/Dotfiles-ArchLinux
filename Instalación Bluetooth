@@ -1,0 +1,2 @@
+yay -S blueberry bluez bluez-utils bluez-libs bluez-tools pulseaudio-bluetooth --noconfirm
+sudo systemctl enable bluetooth.service ; sudo systemctl start bluetooth.service
