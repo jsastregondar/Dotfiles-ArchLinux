@@ -2,4 +2,3 @@ Instalar Java:
 yay -S jre8 --noconfirm
 Instalar MegaBasterd:
  yay -S megabasterd-git --noconfirm 
--
