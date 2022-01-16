@@ -1,0 +1,27 @@
+#Comandos para instalar QEMU:
+sudo pacman -S qemu qemu-guest-agent qemu-arch-extra qemu-block-gluster qemu-block-iscsi qemu-block-rbd samba --noconfirm
+
+#Activacion del servicio para GUEST
+systemctl enable qemu-ga && systemctl start qemu-ga
+
+
+#Instalar driver KVM QEMU driver
+
+sudo pacman -S virt-viewer virt-manager libvirt ebtables dnsmasq bridge-utils openbsd-netcat --noconfirm
+
+#Activamos servicios KVM
+systemctl enable libvirtd virtlogd && systemctl start libvirtd virtlogd && systemctl enable virtlogd.socket && systemctl start virtlogd.socket && systemctl enable virtlockd.socket && systemctl start virtlockd.socket
+
+#Instalar monitor SPICE
+
+sudo pacman -S spice spice-gtk spice-vdagent xf86-video-qxl && systemctl enable spice-vdagentd && systemctl start spice-vdagentd
+
+#Si falla la conexión de NAT hacer lo siguiente:
+# - Ver lista
+sudo virsh net-list --all
+# - Definir conexión NAT
+sudo virsh net-define /etc/libvirt/qemu/networks/default.xml
+# - Que inicie automatico
+sudo virsh net-autostart default
+# - Activar NAT
+sudo virsh net-start default
