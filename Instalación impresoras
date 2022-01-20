@@ -15,4 +15,40 @@ sudo systemctl enable avahi-daemon.service && sudo systemctl start avahi-daemon.
 
 sudo systemctl disable cups.service && sudo systemctl enable cups.service && sudo systemctl daemon-reload && sudo systemctl start cups.service
 
+#5 Crear grupo de impresión y añadir los usuarios que deben tenir permitido imprimir:
+
+  #5.1  Crear grupo LPADMIN:
+          groupadd lpadmin
+     
+#5.2 Agregar usuario o usuarios que queramos que puedan realizr tareas de escaneado e impresión:
+           usermod -aG lpadmin username
+#5.3 Informar a CUPS de la creación del nuevo grupo modificado el fichero cups-files.con con la siguiente orden:
+            sudo nano /etc/cups/cups-files.conf          
+#5.4 Añadir el grupo lpadmin dentro de cups-files.conf debe quedar algo asi:
+          
+          SystemGroup sys root lpadmin
+          
+#5.5 Reiniciar el servicio de cups:
+                    systemctl restart cupsd
+                    
+                    
+#6.Para poder imprimir con una impreosra de red
 Para añadir una impresora iniciamos sesion con unestro usuario del sistema. pulsamos añadir impresora y seguimos los pasos en pantalla.
+
+
+Si es una multifunción bother instalar tambien el paquete brscan4 para poder escanear:
+
+                              yay -S brscan4 --noconfirm
+                              
+Programa para escanear podemos usar Simple Scan se instala con
+
+                              yay -S simple-scan --noconfirm
+
+Programa para gestionar las impresoras de manera gráfica en escritorios GNOME o forks de GNOME (MATE por ejemplo):
+
+                              yay -S system-config-printer --noconfirm
+                              
+Programa para gestionar las impresoras de manera gráfica en el resto de entornos:
+
+                              yay -S gtklp --noconfirm
+
