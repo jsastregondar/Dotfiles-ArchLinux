@@ -1,0 +1,18 @@
+#Para instalar impresoras en Arch Linux realizo los siguientes pasos:
+#1.Para instalar una impresora lo primero de todo instalar el controlador adecuado para la impresora mediante paqueteria AURzzzzzzzzzzzzzzzzz o en el caso de hp instalando hplip
+#2.Instalar los siguientes paquetes:
+
+sudo pacman -S cups ghostscript gsfonts avahi samba cifs-utils --noconfirm
+
+#2.1.Si queremos una impresora para crear documentos PDF instalamos el siguiente paquete:
+          
+            sudo pacman -S cups-pdf --noconfirm
+
+#3.Reiniciar los siguiebtes servicios
+sudo systemctl enable avahi-daemon.service && sudo systemctl start avahi-daemon.service && sudo systemctl restart cups.service
+
+#4.Configuramos el autoarranque de CUPS:
+
+sudo systemctl disable cups.service && sudo systemctl enable cups.service && sudo systemctl daemon-reload && sudo systemctl start cups.service
+
+Para añadir una impresora iniciamos sesion con unestro usuario del sistema. pulsamos añadir impresora y seguimos los pasos en pantalla.
