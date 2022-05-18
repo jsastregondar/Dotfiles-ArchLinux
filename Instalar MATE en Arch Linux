@@ -1,0 +1,32 @@
+Instalar entorno de escritorio MATE en Arch Linux
+
+Primero actualiza el sistema:
+
+$ sudo pacman -Syu
+
+Despues reinicia el sistena
+
+$ sudo reboot
+
+Instala X Window System (xorg) usando el comando:
+
+$ sudo pacman -S xorg xorg-server
+
+Y luego mate:
+
+$ sudo pacman -S mate mate-extra
+
+Luego el gestor de login
+
+$ sudo pacman -S sddm 
+
+Run the following commands one by one to start and enable lxdm service on every reboot.
+
+$ sudo systemctl start sddm.service
+
+$ sudo systemctl enable sddm.service
+
+Done! Let us reboot our Arch system to login to the graphical environment.
+
+$ sudo reboot
+
