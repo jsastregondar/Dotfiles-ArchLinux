@@ -1,0 +1,13 @@
+Para instalar virtualbox sin problemas, seguir estos pasos:
+
+1. Instalar el paquete linux-headers:
+
+yay -S linux-headers --noconfirm
+
+2.Instalar virtualbox con:
+
+yay -S virtualbox virtualbox-ext-oracle virtualbox-guest-utils virtualbox-host-modules-arch virtualbox-bin-guest-iso --noconfirm
+
+3.Ejecutar el siguiente comando para evitar el error 1908:
+
+modprobe vboxdrv
