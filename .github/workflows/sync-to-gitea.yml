@@ -2,9 +2,9 @@ name: Sync to Gitea
 on:
   push:
     branches:
-      - main  # Esto dice que actúe cuando cambies la rama "main"
+      - main  # Cambia a 'master' si es tu rama principal
   pull_request:
-    types: [closed]  # También actúa cuando merges un pull request
+    types: [closed]  # Sincroniza al mergear PRs
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -17,5 +17,5 @@ jobs:
         env:
           GITEA_TOKEN: ${{ secrets.GITEA_TOKEN }}
         run: |
-          git remote add gitea https://jaumesastre:${GITEA_TOKEN}@github.jaumesastre.es/jaumesastre/Dotfiles-ArchLinux.git
+          git remote add gitea https://jaumesastre:${GITEA_TOKEN}@github.jaumesastre.es/jaumesastre/Dotfiles-ArchLinux.git || true
           git push --mirror gitea
