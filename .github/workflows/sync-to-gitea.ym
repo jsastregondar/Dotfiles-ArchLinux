@@ -1,0 +1,21 @@
+name: Sync to Gitea
+on:
+  push:
+    branches:
+      - main  # Esto dice que actúe cuando cambies la rama "main"
+  pull_request:
+    types: [closed]  # También actúa cuando merges un pull request
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Trae todo el historial
+      - name: Push to Gitea
+        env:
+          GITEA_TOKEN: ${{ secrets.GITEA_TOKEN }}
+        run: |
+          git remote add gitea https://jaumesastre:${GITEA_TOKEN}@github.jaumesastre.es/jaumesastre/Dotfiles-ArchLinux.git
+          git push --mirror gitea
